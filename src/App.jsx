@@ -1,9 +1,10 @@
 import Layout from './components/Layout/Layout';
 import { Routes, Route } from "react-router-dom";
 import CompletedTask from './components/CompletedTask/CompletedTask';
-import TodoList from './components/TodoList/TodoList';
 import Calendar from './components/Calendar/Calendar';
 import Home from './components/Home/Home';
+import TodoWrapper from './components/TodoWrapper/TodoWrapper';
+
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/completeTask" element={<CompletedTask />} />
-          <Route path="/todo" element={<TodoList />} />
+          <Route path="/todo" element={<TodoWrapper />} />
           <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </Layout>

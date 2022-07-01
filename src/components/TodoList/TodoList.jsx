@@ -1,52 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { FaEdit, FaCheck } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaEdit } from 'react-icons/fa';
+import UpdateModal from './UpdateModal';
 
-const TodoList = () => {
+const TodoList = ({ tasks, setTasks }) => {
 
-    const [tasks, setTasks] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/task')
-            .then(res => res.json())
-            .then(data => setTasks(data));
-    }, []);
+    console.log(tasks);
 
     const handleDelete = id => {
-        const proceed = confirm('Are you sure want to delete?');
+        const proceed = window.confirm('Are you sure?');
         if (proceed) {
-
+            const url = `http://localhost:5000/task/${id}`
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        console.log('deleted');
+                        const remaining = tasks.filter(task => task._id !== id);
+                        setTasks(remaining);
+                    }
+                })
         }
-
     };
+
+    const [updateTask, setUpdateTask] = useState([]);
+
+    const handleCompletedTask = (id) => {
+        fetch(`http://localhost:5000/task/done/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                alert('Task completed successfully');
+            });
+    }
 
     return (
         <div>
-            <div class="overflow-x-auto mt-10">
-                <table class="table table-zebra w-1/2 mx-auto">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
+            <div className="overflow-x-auto mt-10">
+                <table className="table w-1/2 mx-auto">
                     <tbody>
                         {
                             tasks.map((task, index) => <tr key={task._id} >
                                 <td>{index + 1}</td>
-                                <td>{task.taskItem}</td>
-                                <td className='flex items-center justify-center gap-2 '>
+                                <td>
 
-                                    <button class="btn btn-square btn-sm">
-                                        <FaCheck />
-                                    </button>
+                                    <input onClick={() => handleCompletedTask(task._id)} type="checkbox" className="checkbox" />
+                                    <input type="text" placeholder="Type here" className="input w-4/4 lg:w-full text-xl ml-2" value={task.taskItem} readOnly />
 
-                                    <button class="btn btn-square btn-sm">
-                                        <FaEdit />
-                                    </button>
+                                </td>
+                                <td className='flex items-center gap-2 mt-4 ml-5'>
 
-                                    <button onClick={() => handleDelete(task._id)} class="btn btn-square btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                    <label onClick={() => setUpdateTask(task)} for="update-modal" className="btn modal-button btn-square btn-sm"><FaEdit /></label>
+
+                                    <button onClick={() => handleDelete(task._id)} className="btn btn-square btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                     </button>
                                 </td>
                             </tr>)
@@ -54,6 +67,9 @@ const TodoList = () => {
 
                     </tbody>
                 </table>
+                {
+                    updateTask && <UpdateModal updateTask={updateTask}></UpdateModal>
+                }
             </div>
         </div>
     );

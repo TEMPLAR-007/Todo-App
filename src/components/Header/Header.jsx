@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div class="navbar bg-base-300 lg:px-20">
-            <div class="navbar-start">
-                <div class="dropdown">
-                    <label tabindex="0" class="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        <div className="navbar bg-base-200 lg:px-20">
+            <div className="navbar-start">
+                <div className="dropdown">
+                    <label tabIndex="0" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li> <Link to="/completeTask">Completed Tasks</Link></li>
                         <li> <Link to="/todo">To-Do</Link></li>
                         <li> <Link to="/calendar">Calendar</Link></li>
 
-                        <label class='swap swap-rotate w-14 mt-2'>
+                        <label className='swap swap-rotate w-14 mt-2'>
                             <input type='checkbox' data-toggle-theme='dark,light' />
 
                             <svg
-                                class='swap-on fill-current w-8 h-8'
+                                className='swap-on fill-current w-8 h-8'
                                 xmlns='http://www.w3.org/2000/svg'
                                 viewBox='0 0 24 24'
                             >
@@ -26,7 +26,7 @@ const Header = () => {
                             </svg>
 
                             <svg
-                                class='swap-off fill-current w-8 h-8'
+                                className='swap-off fill-current w-8 h-8'
                                 xmlns='http://www.w3.org/2000/svg'
                                 viewBox='0 0 24 24'
                             >
@@ -36,19 +36,19 @@ const Header = () => {
 
                     </ul>
                 </div>
-                <Link class="btn btn-ghost normal-case text-xl" to="/">daisyUI</Link>
+                <Link className="btn btn-ghost normal-case text-xl" to="/">Mine-Task</Link>
             </div>
-            <div class="navbar-center hidden lg:flex navbar-end">
-                <ul class="menu menu-horizontal p-0">
+            <div className="navbar-center hidden lg:flex navbar-end">
+                <ul className="menu menu-horizontal p-0">
                     <li> <Link to="/completeTask">Completed Tasks</Link></li>
                     <li> <Link to="/todo">To-Do</Link></li>
                     <li> <Link to="/calendar">Calendar</Link></li>
 
-                    <label class='swap swap-rotate'>
+                    <label className='swap swap-rotate'>
                         <input type='checkbox' data-toggle-theme='dark,light' />
 
                         <svg
-                            class='swap-on fill-current w-10 h-10'
+                            className='swap-on fill-current w-10 h-10'
                             xmlns='http://www.w3.org/2000/svg'
                             viewBox='0 0 24 24'
                         >
@@ -56,7 +56,7 @@ const Header = () => {
                         </svg>
 
                         <svg
-                            class='swap-off fill-current w-10 h-10'
+                            className='swap-off fill-current w-10 h-10'
                             xmlns='http://www.w3.org/2000/svg'
                             viewBox='0 0 24 24'
                         >

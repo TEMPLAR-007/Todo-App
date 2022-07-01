@@ -1,7 +1,9 @@
-import React from 'react';
+import customHooks from '../../Hooks/Hooks';
 import TodoList from '../TodoList/TodoList';
 
 const Home = () => {
+
+    const { tasks, setTasks, setRefetch } = customHooks();
 
     const handleAddTask = e => {
         e.preventDefault();
@@ -20,6 +22,7 @@ const Home = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result);
+                setRefetch(true);
                 e.target.reset();
             });
     }
@@ -28,9 +31,9 @@ const Home = () => {
 
             <form onSubmit={handleAddTask} className='flex flex-col shadow-xl w-52 lg:w-2/6 p-2 rounded-lg m-auto mt-5 border'>
 
-                <input type="text" name='task' placeholder="Type task..." class="input input-bordered w-auto text-lg font-semibold" />
+                <input type="text" name='task' placeholder="Type task..." className="input input-bordered w-auto text-lg font-semibold" />
 
-                <input class="btn btn-block mt-2" type="submit" value="Add item" />
+                <input className="btn btn-block mt-2" type="submit" value="Add item" />
 
             </form>
 
@@ -38,7 +41,10 @@ const Home = () => {
             {/* all task shown */}
 
             <div >
-                <TodoList></TodoList>
+                <TodoList
+                    tasks={tasks}
+                    setTasks={setTasks}
+                ></TodoList>
             </div>
 
         </div>
