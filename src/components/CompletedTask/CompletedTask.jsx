@@ -5,7 +5,7 @@ const CompletedTask = () => {
 
     useEffect(() => {
         const role = "done";
-        const url = `http://localhost:5000/donetask?role=${role}`
+        const url = `https://conservative-goose-03183.herokuapp.com/donetask?role=${role}`
         fetch(url)
             .then(res => res.json())
             .then(data => setCompletes(data)
@@ -15,9 +15,6 @@ const CompletedTask = () => {
 
     return (
         <div>
-            <h1>{completes.length}</h1>
-
-
             <div className="overflow-x-auto mt-10">
                 <table className="table w-1/2 mx-auto">
                     <tbody>

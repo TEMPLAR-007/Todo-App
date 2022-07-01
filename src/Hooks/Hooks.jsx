@@ -8,7 +8,7 @@ const customHooks = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/task')
+        fetch('https://conservative-goose-03183.herokuapp.com/task')
             .then(res => res.json())
             .then(data => setTasks(data));
     }, []);
@@ -17,7 +17,7 @@ const customHooks = () => {
 
     useEffect(() => {
         if (refetch) {
-            fetch('http://localhost:5000/task')
+            fetch('https://conservative-goose-03183.herokuapp.com/task')
                 .then(res => res.json())
                 .then(data => {
                     setTasks(data);

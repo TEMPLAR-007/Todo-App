@@ -9,7 +9,7 @@ const TodoList = ({ tasks, setTasks }) => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/task/${id}`
+            const url = `https://conservative-goose-03183.herokuapp.com/task/${id}`
             fetch(url, {
                 method: 'DELETE'
             })
@@ -27,7 +27,7 @@ const TodoList = ({ tasks, setTasks }) => {
     const [updateTask, setUpdateTask] = useState([]);
 
     const handleCompletedTask = (id) => {
-        fetch(`http://localhost:5000/task/done/${id}`, {
+        fetch(`https://conservative-goose-03183.herokuapp.com/task/done/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

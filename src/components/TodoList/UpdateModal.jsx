@@ -9,7 +9,7 @@ const UpdateModal = ({ updateTask }) => {
 
         const updatedTask = { taskItem };
 
-        fetch(`http://localhost:5000/task/${updateTask._id}`, {
+        fetch(`https://conservative-goose-03183.herokuapp.com/task/${updateTask._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
